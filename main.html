@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a33b1f4748.js" crossorigin="anonymous"></script>
+  <title>Task Management Calendar</title>
+  <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button id="select-year-month">Select Year & Month</button>
+      <h1 id="month-year"></h1>
+      <button id="prev-month">&#10094;</button>
+      <button id="next-month">&#10095;</button>
+    </header>
+    <div id="calendarstatus" class="calendarstatus"></div>
+  </div>
+
+  <!-- Year and Month Popup -->
+  <div id="year-month-popup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <h3 class="years">Select Year and Month</h3>
+      <select id="year-select"></select>
+      <select id="month-select"></select>
+      <button id="apply-month">Apply</button>
+    </div>
+  </div>
+
+  <!-- Task Modal (Popup) -->
+  <div id="task-modal" class="popup">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <h3 class="upd">Add/Update Task</h3>
+      <input type="text" id="task-name" placeholder="Task Name" required>
+      <input type="text" id="client-name" placeholder="Client Name" required>
+      <!-- <input type="text" id="employee-name" placeholder="Employee Name"> -->
+      <select id="employee-name">
+        <option value="" disabled selected>Employee Name</option>
+        <option value="Anjali">Anjali</option>
+        <option value="Vishnu">Vishnu</option>
+      </select>
+
+      <input type="time" id="task-time">
+      <select id="task-status">
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button id="save-task">Save Task</button>
+      <button id="remove-task">Remove Task</button>
+    </div>
+  </div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="#" class="menu-item" id="dashboard"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+      <li><a href="#" class="menu-item" id="tasks"><i class="fa-solid fa-list-check"></i> My Tasks</a></li>
+      <li><a href="#" class="menu-item" id="notifications"><i class="fa-regular fa-bell"></i> Notifications</a></li>
+    </ul>
+      <div class="setting">
+      <a href="#" class="menu-items" id="notifications"><i class="fa-solid fa-gear"></i> Settings</a><br><br><br>
+      <a href="#" class="menu-items" id="notifications"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
+    </div>
+  </div>
+  
+
+  <!--  -->
+  <!-- Top nav bar -->
+  <div class="rectangle-5"></div> 
+  
+  <!-- Search -->
+  <!-- Search -->
+<div class="search-container">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+    <div class="suggestions-list" id="suggestionsList">
+      <div class="no-suggestions">No suggestions found</div>
+    </div>
+  </div>
+  
+
+  <!--  -->
+  <!--  -->
+
+  <!-- Tasks -->
+
+<!-- Button to open the popup -->
+<div class="pop_upsUnique"><button id="openPopupBtnUnique"><i class="fa-solid fa-plus"></i>New Task</button></div>
+
+<!-- Popup window -->
+<div id="popupUnique" class="popupUnique">
+  <div class="popup-contentUnique">
+    <span class="close-btnUnique" id="closePopupBtnUnique">&times;</span>
+
+    <div>
+      <div class="date_ssUnique"><i class="fa-solid fa-clipboard-list fa-lg"></i><input type="text" class="day_sssUnique" placeholder="Name of task"/></div>
+    </div>
+    <div class="dayssUnique"><i class="fa-solid fa-calendar-days"></i>
+      <p>Day</p>
+      <div class="date_sUnique"><input type="date" value="2017-06-01" class="day_sUnique"/></div>
+    </div>
+    <div class="dayssUnique"><i class="fa-regular fa-bell"></i>
+      <p>Notifications</p>
+      <div class="date_sUnique">
+        <!-- Time Picker -->
+        <form>
+          <input type="time" id="timeUnique" name="time" class="timesUnique">
+          <select id="ampmUnique" name="ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="dayssUnique">
+      <i class="fa-solid fa-flag"></i>
+      <p>Priority</p>
+      <div class="date_sUnique">
+        <div class="dropdownUnique">
+          <select id="PriorityUnique" name="Priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="dayssUnique">
+      <i class="fa-solid fa-tag"></i>
+      <p>Tags</p>
+      <div class="date_sUnique">
+        <div class="dropdownsUnique">
+          <select id="tagsUnique" name="Tags">
+              <option value="poster">Poster</option>
+              <option value="video">Video</option>
+              <option value="reels">Reels</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="dayssUnique">
+      <i class="fa-solid fa-user"></i>
+      <p>Assign to</p>
+      <div class="date_sUnique">
+        <div class="dropdown3Unique">
+          <select id="assignToUnique" name="assignTo">
+              <option value="Anjali">Anjali</option>
+              <option value="Sai">Sai</option>
+              <option value="Akshay">Akshay</option>
+              <option value="Seethal">Seethal</option>
+              <option value="Vishnu">Vishnu</option>
+              <option value="Adhi">Adhi</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="daysssUnique">
+      <p>Description</p>
+      <textarea id="descriptionUnique" name="description" rows="5" cols="33"></textarea>
+    </div>
+    <div class="dayssssUnique">
+      <button type="submit" value="create task" class="taskcreateUnique">Create task</button>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+
+<!-- Add Client -->
+
+<!--  -->
+<!-- Clients -->
+<!-- Button to open the popup -->
+<div class="pop_upsClient"><button id="openPopupBtnClient"><i class="fa-solid fa-users"></i></button></div>
+
+<!-- Popup window -->
+<div id="popupClient" class="popupClient">
+  <div class="popup-contentClient">
+    <span class="close-btnClient" id="closePopupBtnClient">&times;</span>
+
+    <div>
+      <div class="date_ssClient">ADD CLIENT</div>
+    </div>
+    
+    <!-- <div class="dayssClient"><i class="fa-solid fa-calendar-days"></i>
+      <p>Day</p>
+      <div class="date_sClient"><input type="date" value="2017-06-01" class="day_sClient"/></div>
+    </div> -->
+    <!-- <div class="dayssClient"><i class="fa-regular fa-bell"></i>
+      <p>Notifications</p>
+      <div class="date_sClient">
+        
+        <form>
+          <input type="time" id="timeClient" name="time" class="timesClient">
+          <select id="ampmClient" name="ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+          </select>
+        </form>
+      </div>
+    </div> -->
+    <!-- <div class="dayssClient">
+      <i class="fa-solid fa-flag"></i>
+      <p>Priority</p>
+      <div class="date_sClient">
+        <div class="dropdownClient">
+          <select id="PriorityClient" name="Priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="dayssClient">
+      <i class="fa-solid fa-tag"></i>
+      <p>Tags</p>
+      <div class="date_sClient">
+        <div class="dropdownsClient">
+          <select id="tagsClient" name="Tags">
+              <option value="poster">Poster</option>
+              <option value="video">Video</option>
+              <option value="reels">Reels</option>
+          </select>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="dayssClient">
+      <i class="fa-solid fa-user"></i>
+      <p>Assign to</p>
+      <div class="date_sClient">
+        <div class="dropdown3Client">
+          <select id="assignToClient" name="assignTo">
+              <option value="Anjali">Anjali</option>
+              <option value="Sai">Sai</option>
+              <option value="Akshay">Akshay</option>
+              <option value="Seethal">Seethal</option>
+              <option value="Vishnu">Vishnu</option>
+              <option value="Adhi">Adhi</option>
+          </select>
+        </div>
+      </div>
+    </div> -->
+    <!--  -->
+    <div class="daysssClient">
+      <label>Name</label>
+     <input type="text" class="Descss">
+    </div>
+    <div class="daysssClient">
+      <label>Phone Number</label>
+     <input type="number" class="Descss1">
+    </div>
+    <div class="daysssClient">
+      <label>Logo</label>
+      <div class="file-uploads">
+          <label for="fileInput" class="custom-file-upload">
+              Choose a File
+          </label>
+          <input type="file" id="fileInput" style="display:none;" onchange="displayFileName()">
+          <div id="fileNameDisplay" class="file-name"></div>
+  </div>
+    </div>
+    <div class="daysssClient">
+      <label>Creative</label>
+      <div class="select_option">
+      <select name="creative" id="creative">
+          <option value="videos">Videos</option>
+          <option value="posters">Posters</option>
+          <option value="reels">Reels</option>
+          
+        </select>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dayssssClient">
+      <button type="submit" value="create task" class="taskcreateClient">Add Client</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--  -->
+
+
+<!-- Add Employees -->
+
+<!-- Add Employees -->
+ <!-- Button to open the popup -->
+ <div class="pop_ups"><button id="openPopupBtnEmployee"><i class="fa-solid fa-user-plus"></i></button></div>
+
+ <!-- Popup window -->
+ <div id="popupEmployee" class="popupEmployee">
+   <div class="popup-contentEmployee">
+     <span class="close-btnEmployee" id="closePopupBtnEmployee">&times;</span>
+
+     <div>
+       <div class="date_ss"><label for="Name" class="employeeees">ADD EMPLOYEE</label></div>
+     </div>
+
+
+     <div>
+       <div class="date_ss"><label for="Name">Name</label><input type="text" class="day_sss1" /></div>
+     </div>
+     
+     <div>
+       <div class="date_ss"><label for="username">Username</label><input type="text" class="day_sss2" /></div>
+     </div>
+
+     
+     <div>
+       <div class="date_ss"><label for="password">Password</label><input type="password" class="day_sss3" /></div>
+     </div>
+
+
+     <div>
+       <div class="date_ss"><label for="password">Role</label><select id="ampmUnique" name="ampm" class="select-employees">
+           
+           <option value="AM">Designer</option>
+           <option value="PM">Marketing</option>
+       </select>
+     
+     </div>
+     </div>
+
+
+
+     <!-- <div class="dayss"><i class="fa-solid fa-calendar-days"></i>
+       <p>Day</p>
+       <div class="date_s"><input type="date" value="2017-06-01" class="day_s"/></div>
+     </div> -->
+     <!-- <div class="dayss"><i class="fa-regular fa-bell"></i>
+       <p>Notifications</p>
+       <div class="date_s">
+         <form>
+           <input type="time" id="timeEmployee" name="time" class="times">
+           <select id="ampmEmployee" name="ampm">
+             <option value="AM">AM</option>
+             <option value="PM">PM</option>
+           </select>
+         </form>
+       </div>
+     </div> -->
+     <!-- Add priority -->
+     <!-- <div class="dayss">
+       <i class="fa-solid fa-flag"></i>
+       <p>Priority</p>
+       <div class="date_s">
+         <div class="dropdownEmployee">
+           <select id="PriorityEmployee" name="Priority">
+             <option value="high">High</option>
+             <option value="medium">Medium</option>
+             <option value="low">Low</option>
+           </select>
+         </div>
+       </div>
+     </div> -->
+
+     <!-- Add Tags -->
+     <!-- <div class="dayss">
+       <i class="fa-solid fa-tag"></i>
+       <p>Tags</p>
+       <div class="date_s">
+         <div class="dropdownEmployee">
+           <select id="tagsEmployee" name="Tags">
+             <option value="poster">Poster</option>
+             <option value="video">Video</option>
+             <option value="reels">Reels</option>
+           </select>
+         </div>
+       </div>
+     </div> -->
+
+     <!-- Assign -->
+     <!-- <div class="dayss">
+       <i class="fa-solid fa-user"></i>
+       <p>Assign to</p>
+       <div class="date_s">
+         <div class="dropdownEmployee">
+           <select id="assignToEmployee" name="AssignTo">
+             <option value="Anjali">Anjali</option>
+             <option value="Sai">Sai</option>
+             <option value="Akshay">Akshay</option>
+             <option value="Seethal">Seethal</option>
+             <option value="Vishnu">Vishnu</option>
+             <option value="Adhi">Adhi</option>
+           </select>
+         </div>
+       </div>
+     </div> -->
+
+     <!-- Description -->
+     <!-- <div class="daysss">
+       <p>Description</p>
+       <textarea id="descriptionEmployee" name="description" rows="5" cols="33"></textarea>
+     </div> -->
+
+     <!-- Create task -->
+     <div class="dayssss">
+       <button type="submit" value="create task" class="taskcreateEmployee">Add Employee</button>
+     </div>
+   </div>
+ </div>
+ <script src="clientpops2.js"></script>
+ <script src="clientpops2024.js"></script>
+ <script src="clientpops3.js"></script>
+ <script src="createtask2.js"></script>
+ <script src="ctreatetask2024.js"></script>
+ <script src="createtaskscript2024.js"></script>
+ <script src="dash.js"></script>
+ <script src="Employeesadd2.js"></script>
+ <script src="Employeesadd2024.js"></script>
+ <script src="search2024.js"></script>
+ <script src="sidebar2024.js"></script>
+</body>
+</html>
